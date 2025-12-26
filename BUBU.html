@@ -1,0 +1,455 @@
+<!DOCTYPE html>
+<html lang="zh-TW">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>幸福里拼布工作室 | 織起手心的溫度</title>
+    <style>
+        :root {
+            --primary-color: #A0522D; /* 赭石色 */
+            --secondary-color: #F5F5DC; /* 米色 */
+            --accent-color: #E9967A; /* 柔和鮭魚粉 */
+            --text-color: #4A4A4A; /* 深灰 */
+            --bg-color: #FCFBF8; /* 紙質感背景 */
+            --card-bg: #fff;
+        }
+
+        body {
+            font-family: "Helvetica Neue", Helvetica, "PingFang TC", "Microsoft JhengHei", Arial, sans-serif;
+            background-color: var(--bg-color);
+            color: var(--text-color);
+            line-height: 1.8;
+            margin: 0;
+            padding: 0;
+        }
+
+        /* 導航列 */
+        nav {
+            background-color: #fff;
+            box-shadow: 0 2px 5px rgba(0,0,0,0.05);
+            padding: 1rem 5%;
+            position: sticky;
+            top: 0;
+            z-index: 1000;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        .logo {
+            font-size: 1.5rem;
+            font-weight: bold;
+            color: var(--primary-color);
+        }
+
+        .nav-links a {
+            text-decoration: none;
+            color: var(--text-color);
+            margin-left: 15px;
+            font-weight: 500;
+            font-size: 0.95rem;
+            transition: color 0.3s;
+        }
+
+        .nav-links a:hover {
+            color: var(--primary-color);
+        }
+
+        /* --- 英雄區塊 (Hero Section) 更新 --- */
+        .hero {
+            /* 移除之前的全版白色遮罩，直接顯示背景圖 */
+            background: url('HUA.png') no-repeat center center/cover;
+            height: 60vh;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            text-align: center;
+            color: #fff; /* 將文字改回白色，以配合深色方塊 */
+            padding: 0 20px;
+        }
+
+        /* 新增：文字有色方塊樣式 */
+        .hero-text-box {
+            background-color: rgba(160, 82, 45, 0.85); /* 使用品牌主色(赭石色)並加上透明度 */
+            padding: 2.5rem; /* 增加內部留白 */
+            border-radius: 15px; /* 圓角 */
+            box-shadow: 0 8px 25px rgba(0,0,0,0.2); /* 增加立體感陰影 */
+            max-width: 750px; /* 限制最大寬度 */
+            backdrop-filter: blur(2px); /* 選用：輕微的毛玻璃效果 */
+        }
+
+        .hero h1 {
+            font-size: 3rem;
+            margin-bottom: 1rem;
+            text-shadow: 1px 1px 3px rgba(0,0,0,0.3); /* 增加輕微文字陰影提升辨識度 */
+        }
+
+        .hero p {
+            font-size: 1.2rem;
+            margin: 0 auto;
+        }
+
+        /* 通用區塊 */
+        section { padding: 4rem 5%; max-width: 1200px; margin: 0 auto; }
+        
+        h2 {
+            text-align: center;
+            color: var(--primary-color);
+            font-size: 2rem;
+            margin-bottom: 3rem;
+            position: relative;
+        }
+        h2::after {
+            content: ''; display: block; width: 50px; height: 3px;
+            background-color: var(--accent-color); margin: 10px auto 0;
+        }
+
+        /* 故事區塊 (Grid) */
+        .stories-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 2rem;
+        }
+        .story-card {
+            background: var(--card-bg);
+            border-radius: 10px;
+            overflow: hidden;
+            box-shadow: 0 4px 15px rgba(0,0,0,0.05);
+            transition: transform 0.3s;
+            border-top: 5px solid var(--accent-color);
+        }
+        .story-card:hover { transform: translateY(-5px); }
+        .story-content { padding: 20px; }
+        .story-title { font-size: 1.25rem; color: var(--primary-color); margin-bottom: 10px; font-weight: bold; }
+        .story-desc { font-size: 0.95rem; color: #666; margin-bottom: 15px; text-align: justify; }
+        .story-tag { display: inline-block; background-color: var(--secondary-color); color: var(--primary-color); padding: 4px 10px; border-radius: 20px; font-size: 0.8rem; }
+
+        /* 圖騰故事區塊 */
+        .pattern-container {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 2rem;
+        }
+        .pattern-card {
+            background-color: #fff;
+            padding: 2rem;
+            border-radius: 15px;
+            text-align: center;
+            box-shadow: 0 4px 10px rgba(0,0,0,0.06);
+            border: 1px solid #eee;
+        }
+        .pattern-icon {
+            width: 60px; height: 60px; background-color: var(--secondary-color); border-radius: 50%;
+            margin: 0 auto 1rem; display: flex; align-items: center; justify-content: center;
+            font-size: 1.5rem; color: var(--primary-color); font-weight: bold;
+        }
+        .pattern-title { font-size: 1.2rem; color: var(--primary-color); margin-bottom: 0.5rem; font-weight: bold; }
+        .pattern-text { font-size: 0.9rem; color: #555; line-height: 1.6; text-align: justify; text-align-last: center; }
+
+        /* 線上教材區塊 */
+        .tutorial-container { display: flex; flex-direction: column; gap: 3rem; align-items: center; }
+        .tutorial-item { background: #fff; padding: 20px; border-radius: 15px; box-shadow: 0 4px 20px rgba(0,0,0,0.08); max-width: 900px; width: 100%; }
+        .tutorial-item img { width: 100%; height: auto; border-radius: 8px; margin-bottom: 15px; border: 1px solid #eee; }
+        .tutorial-caption { background-color: var(--secondary-color); padding: 15px; border-radius: 8px; border-left: 4px solid var(--primary-color); }
+        .tutorial-caption h3 { margin: 0 0 10px 0; color: var(--primary-color); font-size: 1.2rem; }
+
+        /* 體驗活動區塊 */
+        .activity-container { background-color: #fff; padding: 2rem; border-radius: 15px; box-shadow: 0 4px 15px rgba(0,0,0,0.05); }
+        .activity-row { display: flex; border-bottom: 1px solid #eee; padding: 1.5rem 0; }
+        .activity-row:last-child { border-bottom: none; }
+        .activity-time { flex: 0 0 100px; font-weight: bold; color: var(--accent-color); }
+        .activity-content { flex: 1; }
+        .activity-title { font-size: 1.2rem; font-weight: bold; margin-bottom: 0.5rem; }
+        .activity-steps li { margin-bottom: 5px; list-style-type: circle; }
+
+        /* --- 未來規劃區塊 (Future Plan) --- */
+        .future-section {
+            background-color: var(--primary-color);
+            color: #fff;
+            position: relative;
+        }
+        
+        .future-section h2 { color: #fff; }
+        .future-section h2::after { background-color: #fff; }
+
+        /* 地圖容器樣式 */
+        .future-map-container {
+            text-align: center;
+            margin-bottom: 3rem;
+            padding: 10px;
+        }
+
+        .future-map-container img {
+            max-width: 100%;
+            height: auto;
+            border-radius: 10px;
+            box-shadow: 0 8px 25px rgba(0,0,0,0.3);
+            border: 4px solid rgba(255,255,255,0.2);
+            transition: transform 0.3s;
+        }
+        
+        .future-map-container img:hover {
+            transform: scale(1.01);
+        }
+
+        .plan-box {
+            background: rgba(255, 255, 255, 0.1);
+            border-left: 5px solid var(--secondary-color);
+            padding: 2rem;
+            margin-bottom: 2rem;
+            border-radius: 0 10px 10px 0;
+        }
+
+        .plan-title {
+            font-size: 1.5rem;
+            font-weight: bold;
+            color: var(--secondary-color);
+            margin-bottom: 1rem;
+            display: flex;
+            align-items: center;
+        }
+
+        .plan-content { font-size: 1.1rem; line-height: 1.9; opacity: 0.95; }
+
+        .plan-highlights { display: flex; flex-wrap: wrap; gap: 15px; margin-top: 2rem; justify-content: center; }
+        .highlight-badge {
+            background-color: var(--accent-color);
+            color: #fff;
+            padding: 8px 20px;
+            border-radius: 25px;
+            font-weight: bold;
+            font-size: 0.95rem;
+            box-shadow: 0 2px 5px rgba(0,0,0,0.2);
+        }
+
+        footer { background-color: #5d3a24; color: #fff; text-align: center; padding: 2rem; margin-top: 0; }
+
+        @media (max-width: 768px) {
+            .hero h1 { font-size: 2rem; }
+            .activity-row { flex-direction: column; }
+            .nav-links { display: none; }
+            .plan-title { flex-direction: column; align-items: flex-start; }
+            .hero-text-box { padding: 1.5rem; margin: 0 10px; } /* 手機版調整方塊內距 */
+        }
+    </style>
+</head>
+<body>
+
+    <nav>
+        <div class="logo">幸福里拼布</div>
+        <div class="nav-links">
+            <a href="#stories">阿嬤的故事</a>
+            <a href="#patterns">圖騰寓意</a>
+            <a href="#tutorial">線上教材</a>
+            <a href="#workshop">體驗課程</a>
+            <a href="#future">未來規劃</a>
+        </div>
+    </nav>
+
+    <header class="hero">
+        <div class="hero-text-box">
+            <h1>生活即使破碎，愛能拼湊圓滿</h1>
+            <p>在這裡，每一塊碎布都藏著一段記憶。從阿嬤的舊衣櫃到你的手心，我們縫補的不只是布料，更是時光。</p>
+        </div>
+    </header>
+
+    <section id="stories">
+        <h2>幸福里的地方故事</h2>
+        <div class="stories-grid">
+            <div class="story-card">
+                <div class="story-content">
+                    <div class="story-title">蝴蝶與阿公的舊襯衫</div>
+                    <p class="story-desc">阿公走後，那件藍色格子襯衫變成了蝴蝶。當它停在沙發上，彷彿阿公的守候從未離開，這是帶回家的、一輩子的福氣。</p>
+                    <span class="story-tag">#記憶修復</span>
+                </div>
+            </div>
+            <div class="story-card">
+                <div class="story-content">
+                    <div class="story-title">母親的手心溫度</div>
+                    <p class="story-desc">為了延續母親百納被的溫暖，張阿嬤將這份「手心的溫度」縫進新的拼布裡，那是貧苦歲月中最深沉的護佑。</p>
+                    <span class="story-tag">#家族傳承</span>
+                </div>
+            </div>
+            <div class="story-card">
+                <div class="story-content">
+                    <div class="story-title">孫子長大的痕跡</div>
+                    <p class="story-desc">恐龍T恤、碎花領口，黃阿嬤將孫子的童裝縫成蓋毯。這不是舊物利用，而是一場關於記憶的修復工程。</p>
+                    <span class="story-tag">#成長記憶</span>
+                </div>
+            </div>
+            <div class="story-card">
+                <div class="story-content">
+                    <div class="story-title">與黑夜和平相處</div>
+                    <p class="story-desc">退休後的漫漫長夜曾是折磨，直到張李阿嬤拿起了針線。拼布成了她的安神劑，將孤單縫製成燦爛的夢境。</p>
+                    <span class="story-tag">#心靈療癒</span>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section id="patterns" style="background-color: #f9f7f2;">
+        <h2>花紋寓意與技法故事</h2>
+        <p style="text-align: center; margin-bottom: 3rem; color: #666;">
+            阿嬤說：「以前的人不識字，但看得懂畫。」每一個圖騰，都是一句無聲的祝福。
+        </p>
+        <div class="pattern-container">
+            <div class="pattern-card">
+                <div class="pattern-icon">魚</div>
+                <div class="pattern-title">魚鱗紋 (年年有餘)</div>
+                <div class="pattern-text">捕魚人家最怕網破沒魚抓。阿嬤縫上密密麻麻的半圓形，祈求漁獲像鱗片一樣多。只要這層鱗片在，米缸就不會空。</div>
+            </div>
+            <div class="pattern-card">
+                <div class="pattern-icon">蝶</div>
+                <div class="pattern-title">蝴蝶紋 (福氣長壽)</div>
+                <div class="pattern-text">「蝶」與長壽的「耋」同音，「蝴」與「福」諧音。繡上一對蝴蝶，希望孩子睡覺時，福氣會拍著翅膀飛過來，一輩子有福有壽。</div>
+            </div>
+            <div class="pattern-card">
+                <div class="pattern-icon">圓</div>
+                <div class="pattern-title">圓點 (圓滿豐收)</div>
+                <div class="pattern-text">又稱「豆紋」，象徵「圓圓滿滿」。提醒自己做人要圓融，一家人要團圓，心滿了，日子就順了。</div>
+            </div>
+            <div class="pattern-card">
+                <div class="pattern-icon">田</div>
+                <div class="pattern-title">方格 (腳踏實地)</div>
+                <div class="pattern-text">四平八穩的方塊像家鄉的田地。寓意做人要端正，做事要勤懇，土地就會回報你衣食無缺。</div>
+            </div>
+             <div class="pattern-card">
+                <div class="pattern-icon">花</div>
+                <div class="pattern-title">向日葵技法</div>
+                <div class="pattern-text">將花瓣狀布片拼成圓圈，費工且珍貴，常為了女兒出嫁或新屋落成準備。象徵繁榮與太陽，照亮家裡的每個角落。</div>
+            </div>
+             <div class="pattern-card">
+                <div class="pattern-icon">貼</div>
+                <div class="pattern-title">貼布繡 (貼上願望)</div>
+                <div class="pattern-text">在底布上疊縫出花、鳥或石榴形狀，像是在布上作畫。這不只是補破洞，更是把想要的願望「貼」上去，賦予作品精氣神。</div>
+            </div>
+        </div>
+    </section>
+
+    <section id="tutorial">
+        <h2>基礎拼布教材線上版</h2>
+        <div class="tutorial-container">
+            <div class="tutorial-item">
+                <img src="1.png" alt="基礎針法">
+                <div class="tutorial-caption">
+                    <h3>第一部分：基礎針法與定位</h3>
+                    <p>學習平針縫與打結。Step 1 使用布用膠將花布黏在標示框線內，做好定位。</p>
+                </div>
+            </div>
+            <div class="tutorial-item">
+                <img src="2.png" alt="縫合與故事">
+                <div class="tutorial-caption">
+                    <h3>第二部分：縫合與花紋故事</h3>
+                    <p>沿內側0.2cm處縫合。<strong>王阿嬤的故事：</strong>六角形像烏龜殼，拼在一起希望能保佑孩子長命百歲。</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section id="workshop" style="background-color: #f4eee8;">
+        <h2>拼布體驗活動流程</h2>
+        <p style="text-align: center; margin-bottom: 2rem;">總時長：60 分鐘</p>
+        <div class="activity-container">
+            <div class="activity-row">
+                <div class="activity-time"><span>10 分鐘</span></div>
+                <div class="activity-content">
+                    <div class="activity-title">階段一：故事閱讀【聽見幸福的聲音】</div>
+                    <ul class="activity-steps">
+                        <li><strong>數位導覽：</strong>學員掃描 QR Code，瀏覽上方的<a href="#stories" style="color:var(--primary-color);">「阿嬤的故事」</a>。</li>
+                        <li><strong>圖騰解密：</strong>引導學員閱讀<a href="#patterns" style="color:var(--primary-color);">「花紋寓意」</a>區塊，了解方格代表田地、蝴蝶代表福氣等意涵。</li>
+                    </ul>
+                </div>
+            </div>
+            <div class="activity-row">
+                <div class="activity-time"><span>40 分鐘</span></div>
+                <div class="activity-content">
+                    <div class="activity-title">階段二：實作與創造【專注一針的靜心】</div>
+                    <ul class="activity-steps">
+                        <li><strong>技能學習：</strong>參考<a href="#tutorial" style="color:var(--primary-color);">「線上教材」</a>，學習平針縫與貼布技巧。</li>
+                        <li><strong>沉浸實作：</strong>將選定的花紋布片（如象徵願望的貼布）縫合至杯墊上。</li>
+                    </ul>
+                </div>
+            </div>
+            <div class="activity-row">
+                <div class="activity-time"><span>10 分鐘</span></div>
+                <div class="activity-content">
+                    <div class="activity-title">階段三：分享與反思【賦予作品靈魂】</div>
+                    <ul class="activity-steps">
+                        <li><strong>成果展示：</strong>分享自己選擇該花紋的原因（例如：為了祈求家人平安）。</li>
+                        <li><strong>回饋分享：</strong>填寫回饋單，紀錄手作的感動。</li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section id="future" class="future-section">
+        <h2>預計規劃：2026 淡水生活節</h2>
+        
+        <div class="future-map-container">
+            <img src="2026淡水生活節.jpg" alt="2026淡水生活節規劃地圖">
+        </div>
+
+        <div class="plan-box">
+            <div class="plan-title">
+                <span>📍 空間再造與擴大參與</span>
+            </div>
+            <div class="plan-content">
+                <p>
+                    隨著幸福里生活街道與綠化工程的完工，2026 年淡水生活節預計將活動範圍擴大至幸福里。
+                    屆時，我們將暫時封閉 <strong>中正東路25巷、學府路51巷3弄及學府路51巷</strong>，
+                    將其打造為期間限定的<strong>「行人徒步區」</strong>。
+                </p>
+                <p>
+                    計畫於路段中央搭設特色棚架，進行生活節活動與周遭店家的擺攤合作，
+                    串聯起「咖啡一條街」與拼布工作室，營造濃厚的街道生活感。
+                </p>
+            </div>
+        </div>
+
+        <div class="plan-box">
+            <div class="plan-title">
+                <span>👣 動線引導與人本交通</span>
+            </div>
+            <div class="plan-content">
+                <p>
+                    我們的目標是將遊客和民眾從<strong>捷運站</strong>，自然地引導至<strong>幸福里</strong>，
+                    體驗完在地的生活氣息後，最後進入<strong>鄞山寺廣場市集</strong>。
+                </p>
+                <p>
+                    這是從 2021 年在老街和重建街開始，一步步串起淡水舊城區的延續。
+                    我們希望展現的，不僅是市集的熱鬧，更是「人本交通」的實踐——讓街道回歸行人，
+                    讓遊客不再只是往千篇一律的老街和漁港散步。
+                </p>
+            </div>
+        </div>
+
+        <div class="plan-box" style="border-left-color: #fff;">
+            <div class="plan-title" style="color: #fff;">
+                <span>🏡 體驗「住在淡水的感覺」</span>
+            </div>
+            <div class="plan-content">
+                <p>
+                    走進捷運站對面的生活街道，我們邀請大家一同沈浸享受當地的生活方式。
+                    在這裡，您可以體驗<strong>幸福里拼布</strong>的溫暖手作，品味<strong>咖啡一條街</strong>的香氣，
+                    真正感受一種「住在淡水」的幸福感。
+                </p>
+            </div>
+        </div>
+
+        <div class="plan-highlights">
+            <span class="highlight-badge">行人徒步區</span>
+            <span class="highlight-badge">幸福里生活街道</span>
+            <span class="highlight-badge">鄞山寺廣場市集</span>
+            <span class="highlight-badge">咖啡一條街</span>
+            <span class="highlight-badge">人本交通</span>
+        </div>
+    </section>
+
+    <footer>
+        <p>&copy; 2025 幸福里拼布工作室 Xingfu Lane Quilting Studio</p>
+        <p>地址：幸福里幸福巷 88 號 | 聯絡電話：02-1234-5678</p>
+    </footer>
+
+</body>
+</html>
